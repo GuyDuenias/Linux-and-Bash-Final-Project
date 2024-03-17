@@ -34,10 +34,7 @@ if ! [[ $sorted_string =~ $pattern ]]; then
 fi
 
 # Bank of 5 letter Words
-words_dict=$(<sgb-words.txt)
-
-# initialize filtered_words with the entire word list
-filtered_words="$words_dict"
+filtered_words=$(<sgb-words.txt)
 
 # main filtering of the words bank by the critiria given
 for ((i = 0; i < 5; i++)); do
