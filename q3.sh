@@ -38,7 +38,6 @@ words_dict=$(<sgb-words.txt)
 
 # initialize filtered_words with the entire word list
 filtered_words="$words_dict"
-echo "$filtered_words run 0"
 
 # main filtering of the words bank by the critiria given
 for ((i = 0; i < 5; i++)); do
@@ -52,20 +51,16 @@ for ((i = 0; i < 5; i++)); do
                 # green- in the right place
                 #take all words that contain the letter in the i posotion
                 filtered_words=$(awk -v letter="$letter" -v pos="$((i + 1))" 'length($0)==5 && substr($0, pos, 1)==letter' <<<"$filtered_words")
-		echo "$filtered_words green"
         elif [ "$color" = 's' ];then
                 # silver not in the word at all
                 #take all words that doesnt contain the letter
                 filtered_words=$(awk -v letter="$letter" 'index($0, letter) == 0' <<<"$filtered_words")
-		echo "$filtered_words silver"
         elif [ "$color" = 'y' ]; then
                 # yellow- not right place
                 # taking all words that doesnt have the letter in position i
                 temp_words=$(awk -v letter="$letter" -v pos="$((i + 1))" 'length($0)==5 && substr($0, pos, 1) != letter' <<<"$filtered_words")
-		echo "$filtered_words yellow 1"
                 # taking all the words that contain same letter in other places
                 filtered_words=$(awk -v letter="$letter" 'index($0, letter) > 0' <<<"$temp_words")
-		echo "$filtered_words yellow 2"
         fi
 done
 echo "The words that match the description:"
