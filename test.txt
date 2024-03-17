@@ -20,4 +20,9 @@ rally
 salty
 train
 unity
-
+stace
+stade
+stage
+stane
+stare
+stave
