@@ -36,6 +36,9 @@ fi
 # Bank of 5 letter Words
 filtered_words=$(<sgb-words.txt)
 
+# Filter out non-alphabetic words and ensure all words are exactly 5 letters long
+filtered_words=$(echo "$filtered_words" | grep -E '^[a-zA-Z]{5}$')
+
 # main filtering of the words bank by the critiria given
 for ((i = 0; i < 5; i++)); do
         #takes the letter and the color
